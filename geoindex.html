@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Weather History</title>
+    <style>
+      .border-fix {
+          border: 1px solid #ddd;
+      }
+
+      .calendar-dropdown {
+          position: relative;
+          display: inline-block;
+      }
+
+      .calendar-dropdown .dropdown-menu {
+          min-width: auto;
+          padding: 0;
+          border: none;
+          box-shadow: none;
+      }
+
+      .calendar-table {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          border-collapse: collapse;
+      }
+
+      .calendar-table td {
+          border: 1px solid #ddd;
+          text-align: center;
+      }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-12 text-center">
+              <h1>Weather History</h1>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-12 text-center">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <input type="text" id="cityInput" placeholder="Enter city name">
+                    <button id="fetchCoordinates">Search</button>
+                    <div id="result"></div>
+                </div>
+            </div>
+
+
+              <select id="interval">
+                <option value="1">1 Day</option>
+                <option value="7">1 Week</option>
+                <option value="30">1 Month</option>
+              </select>
+
+
+              <select id="param">
+                <option value="temperature_2m">Temperature</option>
+                <option value="rain">Rain</option>
+                <option value="cloud_cover">Cloud cover</option>
+                <option value="soil_temperature_0cm">Soil temperature</option>
+                <option value="relative_humidity_2m">Humidity</option>
+              </select>
+              <button onclick="handleSelection()">Fetch Data</button>
+
+
+          </div>
+      </div>
+
+
+      <div class="row mt-3">
+          <div class="col-12">
+              Chart goes here
+          </div>
+      </div>
+
+      <div class="row mt-5">
+          <div class="col-lg-8 border-fix">
+              <canvas id="chart"></canvas>
+          </div>
+          <div class="col-lg-4 border-fix">
+              <div class="row">
+                  <div class="col-6 border-fix" id="mean">
+                      Mean
+                  </div>
+                  <div class="col-6 border-fix" id="median">
+                      Median
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-6 border-fix" id="mode">
+                      Mode
+                  </div>
+                  <div class="col-6 border-fix" id="range">
+                      Range
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-6 border-fix"id="standartDeviation">
+                    Standart deviation
+                </div>
+                <div class="col-6 border-fix" id="minMax">
+                    Max
+                </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</body>
+
+<script src="geoindex.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</html>
